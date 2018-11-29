@@ -1,0 +1,83 @@
+---
+title: "他の言語への対応"
+author: "R Ito"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
+---
+
+R MarkdownはRだけに対応したMarkdown、というわけではありません。
+
+R Markdownが対応している言語には以下のようなものがあります。
+
+```{r}
+names(knitr::knit_engines$get())
+```
+
+これら全てが必ずしも快適に使えるわけではありませんが、実用的なレベルでサポートされている言語もいくつかあります。
+
+## SQL
+
+SQLは非常に実用性が高い言語の一つです。
+
+今回はメモリ上に適当にテーブルを作成します。
+
+```{r}
+library(DBI)
+con <- DBI::dbConnect(RSQLite::SQLite(), path = ":memory:")
+dbWriteTable(con, "mtcars", mtcars)
+```
+
+これでRに組み込みの`mtcars`というデータフレームがテーブルとして保存されました。
+
+中身を見てみましょう。
+
+```{sql connection=con}
+select *
+from mtcars
+limit 10
+```
+
+SQLのコードチャンクの便利なところは結果をRのオブジェクトとして保存できるところです。
+
+```{sql connection=con, output.var=result}
+select mpg, cyl
+from mtcars
+where cyl == 6
+```
+
+つまり、クエリの結果をそのままRでの処理に受け渡すことができます。
+
+```{r}
+result
+```
+
+
+## Python
+
+Pythonもかなり実用的に使える言語の一つです。
+
+```{python}
+import numpy as np
+
+print(np.sin(5))
+```
+
+matplotlibを使ったプロットの表示にも対応しています。
+
+```{python}
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10)
+y = np.sin(x)
+
+plt.plot(x, y)
+plt.show()
+```
+
+とは言うものの今のところはまだまだ使いにくいというのが実際です。コード補完がありませんし、notebook的な使い方もできません。matplotlibのプロットは出力には埋め込まれますが、インライン表示されるわけでもありません。
+
+もう一息というところですが、RStudioの次期バージョンであるRStudio v1.2では、そのもう一息が来る見込みです。期待して待ちましょう。
+

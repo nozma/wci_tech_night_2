@@ -1,0 +1,31 @@
+---
+title: "テンプレート"
+author: "@nozma"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
+---
+
+私がよく使ってるやつです。
+
+これはRの`prettydoc`というパッケージをインストールすると利用可能になります。
+
+## パッケージのインストール
+
+パッケージをインストールすると、テンプレートからのドキュメント作成が可能となります。パッケージをインストールする方法はいくつかありますが、Consoleペインに
+
+```r
+install.packages("prettydoc")
+```
+
+のように入力するとインストールできます。コードチャンクで実行しても構いません。
+
+## テンプレートからのRmd作成
+
+パッケージがインストールされたら、File > New File > R Markdownと選択して、さらにFrom Templeteを選択します。その中の**Lightweight and Pretty Document (HTML)**を選択してOKを押すと、テンプレートからドキュメントを作成できます。とりあえずそのままKnitしてみると雰囲気が分かると思います。
+
+## prettydocの特徴
+
+prettydocで作成されるhtmlファイルはサイズが比較的軽いという特徴があります。ただし、機能はある程度制限されています。例えば目次のフロートやコードの折りたたみができません。
