@@ -42,7 +42,7 @@ limit 10
 
 SQLのコードチャンクの便利なところは結果をRのオブジェクトとして保存できるところです。
 
-```{sql connection=con, output.var=result}
+```{sql connection=con, output.var="result"}
 select mpg, cyl
 from mtcars
 where cyl == 6
@@ -80,4 +80,6 @@ plt.show()
 とは言うものの今のところはまだまだ使いにくいというのが実際です。コード補完がありませんし、notebook的な使い方もできません。matplotlibのプロットは出力には埋め込まれますが、インライン表示されるわけでもありません。
 
 もう一息というところですが、RStudioの次期バージョンであるRStudio v1.2では、そのもう一息が来る見込みです。期待して待ちましょう。
+
+cf. [RStudio Preview Release Notes - RStudio](https://www.rstudio.com/products/rstudio/download/preview-release-notes/)
 
