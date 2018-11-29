@@ -5,6 +5,9 @@ USER root
 COPY . ${HOME}
 RUN chown -R ${NB_USER} ${HOME}
 
+RUN sudo apt-get update && \
+  sudo apt-get -y install python3-tk
+
 ## Become normal user again
 USER ${NB_USER}
 
