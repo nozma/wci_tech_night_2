@@ -69,6 +69,8 @@ matplotlibを使ったプロットの表示にも対応しています。
 
 ```{python}
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("Agg")
 
 x = np.linspace(0, 10)
 y = np.sin(x)
